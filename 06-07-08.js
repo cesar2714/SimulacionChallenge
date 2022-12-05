@@ -7,10 +7,15 @@
 function crearClasePersona() {
   class Persona {
     constructor(nombre, edad, hobbies, amigos) {
+  //constructor(nombre'', edad 0, hobbies[''], amigos[{}]) {
       // El constructor de la clase Persona recibe nombre (string), edad (integer), hobbies (array de strings), amigos (array de objetos)
       // Inicializar las propiedades de la persona con los valores recibidos como argumento
 
       // Tu código aca:
+      this.nombre= nombre;
+      this.edad= edad;
+      this.hobbies= hobbies;
+      this.amigos= amigos;
 
     }
 
@@ -20,6 +25,7 @@ function crearClasePersona() {
       // No debe retornar nada.
 
       // Tu código aca:
+      this.amigos.push({nombre: nombre, edad: edad});
 
     }
 
@@ -28,6 +34,7 @@ function crearClasePersona() {
       // No debe retornar nada.
 
       // Tu código aca:
+      this.hobbies.push(hobby);
 
     }
     getFriends() {
@@ -38,7 +45,11 @@ function crearClasePersona() {
       // persona.getFriends() debería devolver ['martin', 'toni']
 
       // Tu código aca:
-
+      let newArray=[];
+      for(let amigos of this.amigos){
+        newArray.push(amigos.nombre);
+      }
+        return newArray;
     }
 
     getHobbies() {
@@ -47,6 +58,7 @@ function crearClasePersona() {
       // persona.getHobbies() debe devolver ['correr', 'dormir', 'nadar']
 
       // Tu código aca:
+      return this.hobbies;
 
     }
 
@@ -66,12 +78,34 @@ function crearClasePersona() {
       // persona.getPromedioEdad() debería devolver 29 ya que (33 + 25) / 2 = 29
 
       // Tu código aca:
-
+      let suma=0;
+      for(let amigos of this.amigos){
+        suma += amigos.edad
+      }
+      return suma/this.amigos.length;
     }
   };
 
   return Persona;
 }
+//--------------------------------//
+const Persona = crearClasePersona()
+
+const usuario= new Persona('César', 46, ['música', 'fotografia', 'videos'], [{nombre: 'juan', edad: 25}, {nombre:'Ramón', edad: 30}])
+
+usuario.addFriend('María', 45);
+
+usuario.addHobby('Youtube')
+
+console.log(usuario);
+
+console.log(usuario.getFriends())
+
+console.log(usuario.getHobbies())
+
+console.log(usuario.getPromedioEdad())
+
+
 
 // No modifiques nada debajo de esta linea //
 
